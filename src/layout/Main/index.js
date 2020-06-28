@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { Outlet } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
-
 import { Sidebar, Topbar, Footer } from './components';
-
-const drawerWidght = 320
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,15 +14,14 @@ const useStyles = makeStyles(theme => ({
     }
   },
   shiftContent: {
-    paddingLeft: drawerWidght
+    paddingLeft: 250
   },
   content: {
     height: '100%'
   }
 }));
 
-const Main = props => {
-  const { children } = props;
+const Main = () => {
 
   const classes = useStyles();
   const theme = useTheme();
@@ -57,12 +53,11 @@ const Main = props => {
         onClose={handleSidebarClose}
         open={shouldOpenSidebar}
         variant={isDesktop ? 'persistent' : 'temporary'}
-        drawerWidght={drawerWidght}
       />
       <main className={classes.content}>
-        {children}
-        <Footer />
+        <Outlet />
       </main>
+      <Footer />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Badge, Hidden, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -12,15 +12,18 @@ const useStyles = makeStyles(theme => ({
   root: {
     boxShadow: 'none'
   },
-  flexGrow: {
-    flexGrow: 1
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
   },
-  signOutButton: {
-    marginLeft: theme.spacing(1)
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
   },
-  custom: {
-    height: '53px'
-  }
 }));
 
 const Topbar = props => {
@@ -38,33 +41,9 @@ const Topbar = props => {
       <Toolbar
         variant="dense"
         className={
-          classes.custom
+          classes.toolbar
         }
       >
-        <RouterLink to="/">
-          <img
-            alt="Logo"
-            src="/images/logos/logo--white.svg"
-          />
-        </RouterLink>
-        <div className={classes.flexGrow} />
-        <Hidden mdDown>
-          <IconButton color="inherit">
-            <Badge
-              badgeContent={notifications.length}
-              color="primary"
-              variant="dot"
-            >
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <IconButton
-            className={classes.signOutButton}
-            color="inherit"
-          >
-            <InputIcon />
-          </IconButton>
-        </Hidden>
         <Hidden lgUp>
           <IconButton
             color="inherit"
@@ -73,6 +52,13 @@ const Topbar = props => {
             <MenuIcon />
           </IconButton>
         </Hidden>
+        <RouterLink to="/">
+          <img
+            alt="Logo"
+            src="/images/logos/logo--white.svg"
+          />
+        </RouterLink>
+
       </Toolbar>
     </AppBar >
   );
