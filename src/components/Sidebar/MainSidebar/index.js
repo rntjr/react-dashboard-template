@@ -1,122 +1,75 @@
 import React from 'react'
-import { Box, Drawer, Avatar, Tooltip, IconButton } from '@material-ui/core'
-import DashboardRoundedIcon from '@material-ui/icons/DashboardRounded';
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import ChatBubbleRoundedIcon from '@material-ui/icons/ChatBubbleRounded';
-import NotificationsRoundedIcon from '@material-ui/icons/NotificationsRounded';
-import Brightness4RoundedIcon from '@material-ui/icons/Brightness4Rounded';
-import ExploreRoundedIcon from '@material-ui/icons/ExploreRounded';
-import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
+import { IconButton, Avatar, Drawer, Box, Tooltip } from '@material-ui/core'
 import useStyles from './style'
+// Icons
+import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
+import AppsTwoToneIcon from '@material-ui/icons/AppsTwoTone';
+import ChatRoundedIcon from '@material-ui/icons/ChatRounded';
+import MenuOpenRoundedIcon from '@material-ui/icons/MenuOpenRounded';
+import ExploreRoundedIcon from '@material-ui/icons/ExploreRounded';
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
 
 export default function MainSidebar(props) {
-  const { onSidebarOpen, ...rest } = props
   const classes = useStyles()
+  const { openDrawer } = props
+
   return (
-    <Drawer
-      variant="permanent"
-      className={classes.drawer}
-    >
-      <Box
-        flexGrow="1"
-        m={1}
-      >
-        <Box
-          className={classes.boxButton}
-          display="flex"
-          justifyContent="center"
-        >
-          <IconButton
-            size="small"
-            className={classes.buttonCustom}
-            onClick={onSidebarOpen}
-          >
-            <MenuRoundedIcon />
-          </IconButton>
+    <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
+      <Box display="flex" justifyContent="center" pt={1} mr={1} ml={1} flexGrow={1}>
+        <Box >
+          <Tooltip title="Menu" placement="right">
+            <IconButton className={classes.middleButtom} onClick={openDrawer}>
+              <MenuOpenRoundedIcon />
+            </IconButton>
+          </Tooltip>
         </Box>
       </Box>
-
-      <Box
-        flexGrow="1"
-        m={1}
-      >
-        <Box
-          className={classes.boxButton}
-          display="flex"
-          justifyContent="center"
-        >
+      <Box flexGrow={1} mr={1} ml={1}>
+        <Box className={classes.middleDiv}>
           <Tooltip title="Apps" placement="right">
-            <IconButton size="small" className={classes.buttonCustom}>
-              <DashboardRoundedIcon />
+            <IconButton className={classes.middleButtom}>
+              <AppsTwoToneIcon />
             </IconButton>
           </Tooltip>
         </Box>
-        <Box
-          className={classes.boxButton}
-          display="flex"
-          justifyContent="center"
-        >
-          <Tooltip title="Home" placement="right">
-            <IconButton size="small" className={classes.buttonCustom}>
-              <HomeRoundedIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
-        <Box
-          className={classes.boxButton}
-          display="flex"
-          justifyContent="center"
-        >
+        <Box className={classes.middleDiv}>
           <Tooltip title="Chat" placement="right">
-            <IconButton size="small" className={classes.buttonCustom}>
-              <ChatBubbleRoundedIcon />
+            <IconButton className={classes.middleButtom}>
+              <ChatRoundedIcon />
             </IconButton>
           </Tooltip>
         </Box>
-        <Box
-          className={classes.boxButton}
-          display="flex"
-          justifyContent="center"
-        >
-          <Tooltip title="Notifications" placement="right">
-            <IconButton size="small" className={classes.buttonCustom}>
-              <NotificationsRoundedIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
-        <Box
-          className={classes.boxButton}
-          display="flex"
-          justifyContent="center"
-        >
-          <Tooltip title="Explore" placement="right">
-            <IconButton size="small" className={classes.buttonCustom}>
+        <Box className={classes.middleDiv}>
+          <Tooltip title="Social Network" placement="right">
+            <IconButton className={classes.middleButtom}>
               <ExploreRoundedIcon />
             </IconButton>
           </Tooltip>
         </Box>
-      </Box>
-      <Box
-        m={1}
-      >
-        <Box
-          display="flex"
-          justifyContent="center"
-          pb={1}
-        >
-          <Tooltip title="Light/Night" placement="right">
-            <IconButton size="small" className={classes.buttonCustom}>
-              <Brightness4RoundedIcon />
+        <Box className={classes.middleDiv}>
+          <Tooltip title="Settings" placement="right">
+            <IconButton className={classes.middleButtom}>
+              <SettingsRoundedIcon />
             </IconButton>
           </Tooltip>
         </Box>
-        <Tooltip title="Profile" placement="right">
-          <IconButton
-            size="small"
-          >
-            <Avatar className={classes.avatar} />
-          </IconButton>
-        </Tooltip>
+        <Box className={classes.middleDiv}>
+          <Tooltip title="Support" placement="right">
+            <IconButton className={classes.middleButtom}>
+              <HelpRoundedIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      </Box>
+      <Box pb={1} mr={1} ml={1}>
+        <Box className={classes.middleDiv}>
+          <Tooltip title="Support" placement="right">
+            <IconButton size="small">
+              <Avatar className={classes.avatarButtom} />
+            </IconButton>
+          </Tooltip>
+        </Box>
       </Box>
     </Drawer>
   )

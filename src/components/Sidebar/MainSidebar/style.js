@@ -1,24 +1,23 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-
 export default makeStyles(theme => ({
   drawer: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  drawerPaper: {
     flexShrink: 0,
   },
-  buttonAvatar: {
-    borderRadius: theme.spacing(16),
-    minWidth: theme.spacing(0),
-    maxWidth: "46px"
+  middleButtom: {
+    borderRadius: theme.spacing(2)
   },
-  buttonCustom: {
-    minWidth: theme.spacing(0),
-    borderRadius: theme.spacing(1)
+  middleDiv: {
+    justifyContent: "center",
+    display: "flex",
+    marginButtom: theme.spacing(2)
   },
-  avatar: {
-    width: theme.spacing(4),
-    height: theme.spacing(4),
+  avatarButtom: {
+    width: theme.spacing(6),
+    height: theme.spacing(6),
   },
-  boxButton: {
-    marginBottom: theme.spacing(3),
-  }
 }))

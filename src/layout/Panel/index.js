@@ -1,56 +1,43 @@
 import React from 'react'
-import { MainSidebar, MenuSidebar } from '../../components'
-import { Box, CssBaseline, useMediaQuery, Typography, Container, Paper, useTheme } from '@material-ui/core'
+import { Box, Typography, CssBaseline, Paper } from '@material-ui/core'
+import { MainSidebar, DrawerSidebar } from '../../components'
+
+//Styles
 import useStyles from './style'
-import clsx from 'clsx'
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+// Icons
 
 export default function Panel() {
+
+  //Variables
   const classes = useStyles()
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
-    defaultMatches: true
-  });
-  const [openSidebar, setOpenSidebar] = React.useState(false);
-  const handleSidebarOpen = () => {
-    setOpenSidebar(!openSidebar);
-  };
-  const mobile = isDesktop ? true : false
+  const theme = useTheme()
+  const isDesktop = useMediaQuery(theme.breakpoints.up('lg'))
+  const [openDrawer, setOpenDrawer] = React.useState(false)
+
+  // Functions
+  const drawerToggle = () => {
+    setOpenDrawer(!openDrawer)
+  }
 
   return (
-    <Box
-      display="flex"
-      m={3}
-    >
-      <CssBaseline />
-      <MenuSidebar
-        onClose={handleSidebarOpen}
-        open={openSidebar}
-        variant={isDesktop ? 'persistent' : 'temporary'}
-      />
-      <MainSidebar
-        onSidebarOpen={handleSidebarOpen}
-      />
-      <main
-        className={clsx(
-          classes.content,
-          {
-            [classes.contentShift]: (mobile ? openSidebar : false)
-          }
-        )}
-      >
-        <Paper>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus malesuada enim. Morbi eleifend tellus tortor. Maecenas et massa in dolor gravida porta a ut neque. Vestibulum a nulla auctor, lacinia turpis sed, suscipit ex. Maecenas placerat eu dolor sed pharetra. Nam in enim ac lacus dictum pellentesque vitae a erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras placerat fermentum justo non posuere.
+    <Box>
+      <MainSidebar openDrawer={drawerToggle} />
+      <DrawerSidebar open={openDrawer} onClose={drawerToggle} />
+      <main className={classes.content}>
+        <CssBaseline />
+        <Typography component={Paper}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis nisl quis sollicitudin viverra. Praesent ultricies lectus non mi elementum accumsan. Ut sed egestas lorem. Curabitur neque felis, pretium et congue quis, iaculis a lorem. Pellentesque rutrum porttitor tellus, in facilisis ex imperdiet vel. Integer sollicitudin faucibus nunc nec rutrum. Aenean mattis diam in sem efficitur scelerisque. Vestibulum hendrerit pellentesque risus, sit amet posuere elit luctus ac.
 
-            In volutpat dictum ipsum vel ultricies. Sed a sem ex. Integer scelerisque libero id ligula placerat rhoncus. In eu porttitor orci, at pretium ex. Quisque ligula nisi, sagittis nec scelerisque sit amet, mollis a nulla. Nulla porttitor lorem sed sapien pulvinar, ac elementum magna efficitur. Nullam mattis felis a quam vestibulum, eu scelerisque libero auctor. Cras libero massa, lacinia lacinia interdum a, lacinia a ex. Vestibulum ac viverra libero. Phasellus ac malesuada felis. In eget augue quam.
+          Quisque id enim nunc. Nulla facilisi. Aenean accumsan volutpat turpis nec iaculis. In congue ligula metus, mollis tempus risus volutpat vitae. Mauris ut libero ante. Pellentesque ac ligula lobortis, convallis erat vitae, cursus metus. Vestibulum nec dictum mi.
 
-            Praesent id tempus orci, sit amet cursus nulla. Fusce nulla elit, sollicitudin eget ultricies et, eleifend eu sem. Maecenas justo sapien, molestie eget commodo nec, lobortis nec lorem. Vivamus at libero odio. Nulla facilisi. Nulla facilisi. Nullam nec aliquam sapien. Duis in semper est. Morbi nec imperdiet turpis. Aliquam at tortor ligula. Nulla facilisi. Phasellus odio risus, vulputate et sem quis, rhoncus pulvinar lectus. Sed lobortis pharetra enim, in volutpat leo sagittis in. Suspendisse quis sodales orci, eu iaculis sem. Praesent efficitur ut purus laoreet auctor. Proin venenatis quam ut pharetra venenatis.
+          Maecenas bibendum eros dui, vel maximus orci auctor in. In condimentum elit in euismod convallis. Aenean lacinia sollicitudin egestas. Donec sodales ante porta porttitor faucibus. Fusce a elit vel leo volutpat tempus pulvinar vel odio. Aenean non suscipit tortor. Phasellus fermentum tincidunt ante, nec imperdiet massa varius ac. Duis eu egestas augue. Mauris accumsan tincidunt elit, ac tincidunt felis dapibus eu. Duis pretium tempor neque, eget tincidunt orci tristique vitae. Proin at nibh nibh. Sed sed lacus quis nibh tincidunt facilisis vel a nisl. Suspendisse eget ex nibh. Vivamus ultricies purus et metus viverra pulvinar.
 
-            Nulla eros diam, cursus ac risus sodales, cursus lobortis ante. Proin ullamcorper laoreet placerat. Phasellus eu risus a enim consequat rhoncus. Nunc at nulla ut mi egestas bibendum. Maecenas non ante ac nisi pretium interdum. Integer sed leo velit. Vestibulum egestas orci eu nulla pulvinar, vitae sodales augue pretium. Phasellus euismod mattis tincidunt. Fusce vestibulum ac ante quis porttitor. Curabitur et augue ipsum. Duis commodo suscipit vehicula.
+          Pellentesque accumsan efficitur vulputate. Suspendisse tristique orci nec velit mollis iaculis non in sem. Cras vel massa convallis, ultrices erat non, mollis odio. Donec in purus condimentum, aliquet erat a, venenatis risus. Curabitur pharetra, elit id pharetra elementum, eros sem dapibus ipsum, a molestie augue odio ut metus. Sed ac pulvinar magna. Morbi at nibh luctus, pulvinar velit eget, facilisis nibh. Aenean sollicitudin efficitur tincidunt. Vivamus vestibulum efficitur neque, in vehicula erat facilisis sed. Phasellus aliquam in quam in gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec maximus tellus. Proin congue enim non eros finibus viverra. Aenean tempus nunc nisl, eget viverra eros placerat vel. Aenean varius dapibus turpis quis viverra.
 
-            Vivamus quam nisl, volutpat nec dapibus vulputate, lobortis eget arcu. Sed fermentum risus hendrerit efficitur sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius mi eget condimentum eleifend. Quisque et imperdiet dui. Aliquam congue posuere consequat. Nulla imperdiet urna a nibh pharetra fringilla. In rhoncus nunc a viverra volutpat. Pellentesque sodales pellentesque nunc et malesuada. Aenean id leo faucibus, vestibulum dolor non, volutpat risus.
-          </Typography>
-        </Paper>
+          Pellentesque in pretium nunc. Donec et odio eget nulla pulvinar condimentum. Nunc molestie sit amet sapien et aliquet. Fusce sed magna eu quam accumsan pretium. Integer nec mollis risus. Nullam gravida odio mi, tempus blandit dui vehicula ac. Aliquam faucibus feugiat ligula. Morbi ante sapien, tristique et bibendum sed, semper at sem. Quisque sed lacinia tellus. Nunc turpis turpis, egestas eu sodales ac, porttitor sed sem. Pellentesque vitae neque nulla. Ut quis vehicula sapien. Fusce volutpat felis sed sem egestas, quis dignissim diam scelerisque. Aliquam erat volutpat.
+        </Typography>
       </main>
     </Box>
   )
